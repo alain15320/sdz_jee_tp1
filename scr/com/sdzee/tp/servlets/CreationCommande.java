@@ -27,12 +27,12 @@ public class CreationCommande extends HttpServlet {
 	public static final String CHAMP_TELEPHONE = "telephoneClient";
 	public static final String CHAMP_EMAIL = "emailClient";
 
-	public static final String CHAMP_DATE = "nomClient";
-	public static final String CHAMP_MONTANT = "prenomClient";
-	public static final String CHAMP_MODE_PAIEMENT = "adresseClient";
-	public static final String CHAMP_STATUT_PAIEMENT = "telephoneClient";
-	public static final String CHAMP_MODE_LIVRAISON = "emailClient";
-	public static final String CHAMP_STATUT_LIVRAISON = "emailClient";
+	public static final String CHAMP_DATE = "dateCommande";
+	public static final String CHAMP_MONTANT = "montantCommande";
+	public static final String CHAMP_MODE_PAIEMENT = "modePaiementCommande";
+	public static final String CHAMP_STATUT_PAIEMENT = "statutPaiementCommande";
+	public static final String CHAMP_MODE_LIVRAISON = "modeLivraisonCommande";
+	public static final String CHAMP_STATUT_LIVRAISON = "statutLivraisonCommande";
 	
 	public static final String ATT_COMMANDE = "commande";
 	public static final String ATT_MESSAGE = "message";
