@@ -12,7 +12,7 @@
 	<c:import url="/inc/menu.jsp" />
 	<div id="corp">
 		<%-- Affichage de la chaîne "message" transmise par la servlet --%>
-		<p class="info">${ message }</p>
+		<p class="${empty form.erreurs ? 'succes' : 'erreur' }">${form.resultat}</p>
 		<%-- Puis affichage des données enregistrées dans le bean "client" transmis par la servlet --%>
 		<c:if test="${ !erreur }">
 			<p>Nom : ${ client.nom }</p>

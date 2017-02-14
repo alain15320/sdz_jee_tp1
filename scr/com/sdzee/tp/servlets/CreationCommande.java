@@ -1,6 +1,7 @@
 package com.sdzee.tp.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +12,8 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import com.sdzee.tp.beans.Client;
 import com.sdzee.tp.beans.Commande;
+import com.sdzee.tp.forms.CreationCommandeForm;
 
 /**
  * Servlet implementation class CreationCommande
@@ -20,7 +21,12 @@ import com.sdzee.tp.beans.Commande;
 @WebServlet("/creationCommande")
 public class CreationCommande extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+
+	public static final String ATT_COMMANDE = "commande";
+	public static final String ATT_FORM = "form";
+	public static final String VUE = "/WEB-INF/creerCommande.jsp";
+	
+	// -------------------- A verifier
 	public static final String CHAMP_NOM = "nomClient";
 	public static final String CHAMP_PRENOM = "prenomClient";
 	public static final String CHAMP_ADRESSE = "adresseClient";
@@ -34,13 +40,12 @@ public class CreationCommande extends HttpServlet {
 	public static final String CHAMP_MODE_LIVRAISON = "modeLivraisonCommande";
 	public static final String CHAMP_STATUT_LIVRAISON = "statutLivraisonCommande";
 	
-	public static final String ATT_COMMANDE = "commande";
+	// public static final String ATT_COMMANDE = "commande";
 	public static final String ATT_MESSAGE = "message";
 	public static final String ATT_ERREUR = "erreur";
 	
 	public static final String FORMAT_DATE = "dd/MMM/yyyy HH:mm:ss";
-
-	public static final String VUE = "/afficherCommande.jsp";
+	// -------------------- fin de A verifier
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -55,6 +60,30 @@ public class CreationCommande extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		/* Affichage de la page d'inscription */
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+	
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        /* Préparation de l'objet formulaire */
+		CreationCommandeForm form = new CreationCommandeForm();
+
+        /* Appel au traitement et à la validation de la requête, et récupération du bean en résultant */
+		Commande commande = form.insertCommande(request);
+
+		/* Stockage du résultat et des messages d'erreur dans l'objet request */
+		request.setAttribute(ATT_FORM, form);
+		request.setAttribute(ATT_COMMANDE, commande);
+
+		/* Transmission de la paire d'objets request/response à notre JSP */
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		
+		// ------------- A verifier
 		String nom = request.getParameter( CHAMP_NOM );
 		String prenom = request.getParameter( CHAMP_PRENOM );
 		String adresse = request.getParameter( CHAMP_ADRESSE );
@@ -87,7 +116,7 @@ public class CreationCommande extends HttpServlet {
             erreur = false;
         }
 		
-		Client client = new Client();
+		// Client client = new Client();
 		client.setNom(nom);
 		client.setPrenom(prenom);
 		client.setAdresse(adresse);
@@ -108,15 +137,9 @@ public class CreationCommande extends HttpServlet {
 		//request.setAttribute( ATT_ERREUR , erreur );
 
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );	
-	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// ------------- fin de A verifier
+		
+		
 	}
 
 }
