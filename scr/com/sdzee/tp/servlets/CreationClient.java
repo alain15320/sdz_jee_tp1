@@ -20,6 +20,7 @@ public class CreationClient extends HttpServlet {
 
 	public static final String ATT_CLIENT = "client";
 	public static final String ATT_FORM = "form";
+	
 	public static final String VUE_SUCCES = "/WEB-INF/afficherClient.jsp";
 	public static final String VUE_FORM = "/WEB-INF/creerClient.jsp";
 	
