@@ -22,7 +22,7 @@ public class CreationCommande extends HttpServlet {
 	public static final String ATT_FORM = "form";
 
 	public static final String VUE_SUCCES = "/WEB-INF/afficherCommande.jsp";
-	public static final String VUE_FORM = "/WEB-INF/creerClient.jsp";
+	public static final String VUE_FORM = "/WEB-INF/creerCommande.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -61,8 +61,8 @@ public class CreationCommande extends HttpServlet {
 		Commande commande = form.insertCommande(request);
 
 		/* Stockage du résultat et des messages d'erreur dans l'objet request */
-		request.setAttribute(ATT_COMMANDE, commande);
 		request.setAttribute(ATT_FORM, form);
+		request.setAttribute(ATT_COMMANDE, commande);
 
 		/* Transmission de la paire d'objets request/response à notre JSP */
 		if (form.getErreurs().isEmpty()) {

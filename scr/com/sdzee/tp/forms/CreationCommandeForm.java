@@ -66,7 +66,7 @@ public class CreationCommandeForm {
 		try {
 			valeurMontant = validationMontant(montant);
 		} catch (Exception e) {
-			setErreur(CHAMP_MODE_PAIEMENT, e.getMessage());
+			setErreur(CHAMP_MONTANT, e.getMessage());
 		}
 		commande.setMontant(valeurMontant);
 
