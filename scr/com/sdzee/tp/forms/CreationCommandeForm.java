@@ -120,6 +120,7 @@ public class CreationCommandeForm {
 			try {
 				temp = Double.parseDouble(montant);
 				if (temp < 0) {
+					temp=-1;
 					throw new Exception("Le montant doit être un nombre positif.");
 				}
 			} catch (NumberFormatException e) {
